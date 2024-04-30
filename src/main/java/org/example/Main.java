@@ -1,17 +1,40 @@
 package org.example;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.proto.message.gen.proto.RequestOuterClass;
+import com.proto.message.gen.proto.ResponseOuterClass;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    public static void main(String[] args) throws InvalidProtocolBufferException {
+        test_request();
+        test_response();
+    }
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+    private static void test_request() throws InvalidProtocolBufferException {
+        RequestBuilder requestBuilder = new RequestBuilder();
+        RequestOuterClass.Request requestFrom = requestBuilder.buildRequest();
+        byte[] bytes = requestFrom.toByteArray();
+
+        RequestOuterClass.Request requestTo =  RequestOuterClass.Request.parseFrom(bytes);
+        if (requestFrom.equals(requestTo)) {
+            System.out.println("The objects are equal");
+        } else {
+            System.out.println("The objects are not equal");
         }
     }
+
+    private static void test_response() throws InvalidProtocolBufferException {
+        ResponseBuilder responseBuilder = new ResponseBuilder();
+        ResponseOuterClass.Response responseFrom = responseBuilder.buildResponse();
+        byte[] bytes = responseFrom.toByteArray();
+
+        ResponseOuterClass.Response responseTo = ResponseOuterClass.Response.parseFrom(bytes);
+        if (responseFrom.equals(responseTo)) {
+            System.out.println("The objects are equal");
+        } else {
+            System.out.println("The objects are not equal");
+        }
+
+    }   
 }
