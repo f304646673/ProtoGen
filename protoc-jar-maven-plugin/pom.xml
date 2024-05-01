@@ -12,7 +12,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <protobuf-java.version>3.11.4</protobuf-java.version>
+        <protobuf-java.version>4.26.1</protobuf-java.version>
     </properties>
 
     <dependencies>
@@ -41,12 +41,12 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <includeMavenTypes>direct</includeMavenTypes>
-                            <addProtoSources>inputs</addProtoSources>
+                            <protocArtifact>com.google.protobuf:protoc:${protobuf-java.version}</protocArtifact>
                             <inputDirectories>
                                 <include>src/main/proto</include>
                             </inputDirectories>
                             <outputDirectory>src/main/java/protojava</outputDirectory>
+
                         </configuration>
                     </execution>
                 </executions>
