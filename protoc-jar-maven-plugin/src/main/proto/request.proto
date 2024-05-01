@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "com.proto.message.gen.proto";
-
-message Request {
-    string name = 1;
-    int32 age = 2;
-}
