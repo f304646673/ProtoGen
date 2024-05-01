@@ -12,7 +12,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <protobuf-java.version>4.26.1</protobuf-java.version>
+        <protobuf-java.version>3.11.4</protobuf-java.version>
     </properties>
 
     <dependencies>
@@ -29,13 +29,6 @@
     </dependencies>
 
     <build>
-        <extensions>
-            <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>1.7.1</version>
-            </extension>
-        </extensions>
         <plugins>
             <plugin>
                 <groupId>com.github.os72</groupId>
@@ -48,10 +41,12 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <protocVersion>2.4.1</protocVersion>
-                            <type>java-shaded</type>
-                            <addSources>none</addSources>
-                            <outputDirectory>${project.basedir}/src/main/java/protojava</outputDirectory>
+                            <includeMavenTypes>direct</includeMavenTypes>
+                            <addProtoSources>inputs</addProtoSources>
+                            <inputDirectories>
+                                <include>src/main/proto</include>
+                            </inputDirectories>
+                            <outputDirectory>src/main/java/protojava</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
