@@ -46,7 +46,6 @@
                                 <include>src/main/proto</include>
                             </inputDirectories>
                             <outputDirectory>src/main/java/protojava</outputDirectory>
-
                         </configuration>
                     </execution>
                 </executions>
