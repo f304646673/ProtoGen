@@ -54,7 +54,7 @@
                     <additionalProtoPathElements>
                         <additionalProtoPathElement>${project.basedir}/src/main/proto</additionalProtoPathElement>
                     </additionalProtoPathElements>
-                    <outputDirectory>${project.basedir}/src/main/java/proto</outputDirectory>
+                    <outputDirectory>${project.basedir}/src/main/java/protojava</outputDirectory>
                     <protocArtifact>com.google.protobuf:protoc:${protobuf-java.version}:exe:${os.detected.classifier}</protocArtifact>
                 </configuration>
             </plugin>
