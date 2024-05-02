@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "com.proto.message.gen.proto";
+
+import "person.proto";
+
+message Response {
+    repeated Person peoples = 1;
+}
