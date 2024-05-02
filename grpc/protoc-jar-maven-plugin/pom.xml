@@ -13,9 +13,11 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <protobuf-java.version>4.26.1</protobuf-java.version>
+        <io-grpc.version>1.63.0</io-grpc.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
@@ -26,6 +28,30 @@
             <artifactId>protobuf-java-util</artifactId>
             <version>${protobuf-java.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-netty-shaded</artifactId>
+            <version>${io-grpc.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf</artifactId>
+            <version>${io-grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+            <version>${io-grpc.version}</version>
+        </dependency>
+        <dependency> <!-- necessary for Java 9+ -->
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>annotations-api</artifactId>
+            <version>6.0.53</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -45,7 +71,17 @@
                             <inputDirectories>
                                 <include>src/main/proto</include>
                             </inputDirectories>
-                            <outputDirectory>src/main/java/protojava</outputDirectory>
+                            <outputTargets>
+                                <outputTarget>
+                                    <type>java</type>
+                                    <outputDirectory>src/main/java/protojava</outputDirectory>
+                                </outputTarget>
+                                <outputTarget>
+                                    <type>grpc-java</type>
+                                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:${io-grpc.version}</pluginArtifact>
+                                    <outputDirectory>src/main/java/protojava</outputDirectory>
+                                </outputTarget>
+                            </outputTargets>
                         </configuration>
                     </execution>
                 </executions>
