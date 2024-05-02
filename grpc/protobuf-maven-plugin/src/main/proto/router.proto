@@ -3,7 +3,6 @@ import "request.proto";
 import "response.proto";
 
 option java_package = "com.proto.message.gen.proto";
-option java_generic_services = true;
 
 service Router {
   rpc GetPeoples (Request) returns (Response) {}
